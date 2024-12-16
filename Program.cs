@@ -1,8 +1,16 @@
+using fleet_of_knowledge.Models;
+using fleet_of_knowledge.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.Configure<MovieStoreDatabaseSettings>(builder.Configuration.GetSection("MovieStoreDatabase"));
 
-builder.Services.AddControllers();
+// Add services to the container.
+builder.Services.AddSingleton<MovieService>(); // TO-DO: replace for the service 
+
+builder.Services.AddControllers()
+    .AddJsonOptions(
+        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,6 +24,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
+
+app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI"); c.InjectStylesheet("swagger-ui/SwaggerDark.css"); });
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -23,3 +35,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
