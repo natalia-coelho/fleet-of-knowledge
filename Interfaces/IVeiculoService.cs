@@ -1,6 +1,6 @@
-﻿using fleet_of_knowledge.Models;
+﻿using Models;
 
-namespace fleet_of_knowledge.Interfaces;
+namespace Interfaces;
 
 public interface IVeiculoService
 {

@@ -1,10 +1,10 @@
-﻿using fleet_of_knowledge.Data;
-using fleet_of_knowledge.Interfaces;
-using fleet_of_knowledge.Models;
+﻿using Data;
+using Interfaces;
 using Microsoft.Extensions.Options;
+using Models;
 using MongoDB.Driver;
 
-namespace fleet_of_knowledge.Repository;
+namespace Repository;
 
 public class VeiculoRepository : IVeiculoRepository
 {

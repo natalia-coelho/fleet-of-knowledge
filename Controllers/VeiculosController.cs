@@ -1,8 +1,8 @@
-﻿using fleet_of_knowledge.Models;
-using fleet_of_knowledge.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Models;
+using Services;
 
-namespace fleet_of_knowledge.Controllers;
+namespace Controllers;
 
 public class VeiculosController : ControllerBase
 {

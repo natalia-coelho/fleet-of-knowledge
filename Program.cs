@@ -1,7 +1,7 @@
-using fleet_of_knowledge.Data;
-using fleet_of_knowledge.Interfaces;
-using fleet_of_knowledge.Repository;
-using fleet_of_knowledge.Services;
+using Data;
+using Interfaces;
+using Repository;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

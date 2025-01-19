@@ -1,4 +1,4 @@
-﻿namespace fleet_of_knowledge.Models;
+﻿namespace Models;
 
 public class Veiculo
 {

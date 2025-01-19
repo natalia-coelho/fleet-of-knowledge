@@ -1,7 +1,7 @@
-﻿using fleet_of_knowledge.Interfaces;
-using fleet_of_knowledge.Models;
+﻿using Interfaces;
+using Models;
 
-namespace fleet_of_knowledge.Services;
+namespace Services;
 
 public class VeiculoService : IVeiculoService
 {

@@ -1,4 +1,4 @@
-﻿namespace fleet_of_knowledge.Data;
+﻿namespace Data;
 
 public class DatabaseSettings
 {
