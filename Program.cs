@@ -1,9 +1,11 @@
-using fleet_of_knowledge.Models;
+using fleet_of_knowledge.Data;
+using fleet_of_knowledge.Interfaces;
+using fleet_of_knowledge.Repository;
 using fleet_of_knowledge.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<MovieStoreDatabaseSettings>(builder.Configuration.GetSection("MovieStoreDatabase"));
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
 // Add services to the container.
 builder.Services.AddSingleton<MovieService>(); // TO-DO: replace for the service 
