@@ -16,7 +16,7 @@ public class VeiculosController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> ObterVeiculo(Veiculo veiculo)
     {
-        var result = await this._veiculoService.ObterVeiculo();
+        var result = await this._veiculoService.GetTodosVeiculos();
 
         return result == null ? this.NotFound() : this.Ok(result);
     }
@@ -32,16 +32,16 @@ public class VeiculosController : ControllerBase
     [HttpPatch]
     public async Task<IActionResult> AtualizarVeiculo(Veiculo veiculo, Guid id)
     {
-        var result = await this._veiculoService.Atualizar(veiculo, id);
+        await this._veiculoService.Atualizar(veiculo, id);
 
-        return result == null ? this.NotFound() : this.Accepted(veiculo);
+        return this.Accepted(veiculo);
     }
 
     [HttpDelete]
     public async Task<IActionResult> DeletarVeiculo(Guid id)
     {
-        var result = await this._veiculoService.Excluir(id);
+        await this._veiculoService.Excluir(id);
 
-        return this.Accepted(result);
+        return this.Accepted();
     }
 }

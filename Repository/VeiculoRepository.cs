@@ -22,23 +22,14 @@ public class VeiculoRepository : IVeiculoRepository
             databaseSettings.Value.VehiclesCollectionName);
     }
 
-    public Task<Veiculo> DeleteVehicle(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<IEnumerable<Veiculo>> GetAllVehicles() =>
+        await this._vehicleCollection
+            .Find(_ => true)
+            .ToListAsync();
 
-    public Task<Veiculo> GetVehicle()
-    {
-        throw new NotImplementedException();
-    }
+    public async Task InsertVehicle(Veiculo veiculo) => await this._vehicleCollection.InsertOneAsync(veiculo);
 
-    public Task<Veiculo> InsertVehicle(Veiculo veiculo)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task UpdateVehicle(Veiculo veiculo, Guid id) => await this._vehicleCollection.ReplaceOneAsync(v => v.Id == id, veiculo);
 
-    public Task<Veiculo> UpdateVehicle(Veiculo veiculo, Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task DeleteVehicle(Guid id) => await this._vehicleCollection.DeleteOneAsync(v => v.Id == id);
 }

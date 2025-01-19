@@ -4,8 +4,8 @@ namespace Interfaces;
 
 public interface IVeiculoRepository
 {
-    Task<Veiculo> DeleteVehicle(Guid id);
-    Task<Veiculo> GetVehicle();
-    Task<Veiculo> InsertVehicle(Veiculo veiculo);
-    Task<Veiculo> UpdateVehicle(Veiculo veiculo, Guid id);
+    public Task<IEnumerable<Veiculo>> GetAllVehicles();
+    public Task InsertVehicle(Veiculo veiculo);
+    public Task UpdateVehicle(Veiculo veiculo, Guid id);
+    public Task DeleteVehicle(Guid id);
 }
