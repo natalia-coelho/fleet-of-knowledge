@@ -1,20 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Models;
-using Services;
 
 namespace Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class VeiculosController : ControllerBase
 {
-    private readonly VeiculoService _veiculoService;
+    private readonly IVeiculoService _veiculoService;
 
-    public VeiculosController(VeiculoService veiculoService)
+    public VeiculosController(IVeiculoService veiculoService)
     {
         this._veiculoService = veiculoService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> ObterVeiculo(Veiculo veiculo)
+    public async Task<IActionResult> ObterVeiculo()
     {
         var result = await this._veiculoService.GetTodosVeiculos();
 
@@ -26,10 +28,10 @@ public class VeiculosController : ControllerBase
     {
         await this._veiculoService.Cadastrar(veiculo);
 
-        return this.Created();
+        return this.Ok();
     }
 
-    [HttpPatch]
+    [HttpPut]
     public async Task<IActionResult> AtualizarVeiculo(Veiculo veiculo, Guid id)
     {
         await this._veiculoService.Atualizar(veiculo, id);

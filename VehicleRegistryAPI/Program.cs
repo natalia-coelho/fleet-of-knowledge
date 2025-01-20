@@ -1,14 +1,24 @@
 using Data;
 using Interfaces;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using Repository;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure MongoDB to use the correct GuidRepresentation
+BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
 // Add services to the container.
-builder.Services.AddSingleton<MovieService>(); // TO-DO: replace for the service 
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<MovieService>();
+
+builder.Services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+builder.Services.AddScoped<IVeiculoService, VeiculoService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(
