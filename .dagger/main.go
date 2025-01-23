@@ -18,3 +18,7 @@ func (m *VehicleRegistryApi) BuildEnv(source *dagger.Directory) *dagger.Containe
 		WithWorkdir("/source").
 		WithExec([]string{"dotnet", "restore"})
 }
+
+// test
+// build dockerfile
+// publish
