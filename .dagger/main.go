@@ -3,6 +3,7 @@
 package main
 
 import (
+	"context"
 	"dagger/vehicle-registry-api/internal/dagger"
 )
 
@@ -25,5 +26,22 @@ func (m *VehicleRegistryApi) Test(source *dagger.Directory) *dagger.Container {
 		WithExec([]string{"dotnet", "test", "--no-restore", "VehicleRegistryAPI/VehicleRegistries.sln"})
 }
 
-// build dockerfile
+// Builds the Dockerfile at the root of the project
+func (m *VehicleRegistryApi) DockerBuild(
+	ctx context.Context,
+	source *dagger.Directory,
+) (string, error) {
+	ref, err := dag.Container().
+		WithDirectory("/src", source).
+		WithWorkdir("/src").
+		Directory("/src").
+		DockerBuild().
+		Publish(ctx, "ttl.sh/hello-dagger/bernats/fleet-of-knowledge:2h")
+	if err != nil {
+		return "", err
+	}
+
+	return ref, nil
+}
+
 // publish
