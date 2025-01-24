@@ -16,7 +16,7 @@ func (m *VehicleRegistryApi) BuildEnv(source *dagger.Directory) *dagger.Containe
 		WithDirectory("/source", source).
 		WithMountedCache("/root/.nuget/packages", dotnetCache).
 		WithWorkdir("/source").
-		WithExec([]string{"dotnet", "restore"})
+		WithExec([]string{"dotnet", "restore", "VehicleRegistryAPI/VehicleRegistries.sln"})
 }
 
 // test
