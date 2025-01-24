@@ -19,6 +19,11 @@ func (m *VehicleRegistryApi) BuildEnv(source *dagger.Directory) *dagger.Containe
 		WithExec([]string{"dotnet", "restore", "VehicleRegistryAPI/VehicleRegistries.sln"})
 }
 
-// test
+// Runs dotnet test on the app
+func (m *VehicleRegistryApi) Test(source *dagger.Directory) *dagger.Container {
+	return m.BuildEnv(source).
+		WithExec([]string{"dotnet", "test", "--no-restore", "VehicleRegistryAPI/VehicleRegistries.sln"})
+}
+
 // build dockerfile
 // publish
