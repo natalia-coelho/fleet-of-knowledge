@@ -31,9 +31,12 @@ func (m *VehicleRegistryApi) DockerBuild(
 	ctx context.Context,
 	source *dagger.Directory,
 ) *dagger.Container {
+	dotnetCache := dag.CacheVolume("dotnet")
+
 	return dag.Container().
 		WithDirectory("/src", source).
 		WithWorkdir("/src").
+		WithMountedCache("/root/.nuget/packages", dotnetCache).
 		Directory("/src").
 		DockerBuild()
 }
