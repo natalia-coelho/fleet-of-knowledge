@@ -30,18 +30,39 @@ func (m *VehicleRegistryApi) Test(source *dagger.Directory) *dagger.Container {
 func (m *VehicleRegistryApi) DockerBuild(
 	ctx context.Context,
 	source *dagger.Directory,
-) (string, error) {
-	ref, err := dag.Container().
+) *dagger.Container {
+	return dag.Container().
 		WithDirectory("/src", source).
 		WithWorkdir("/src").
 		Directory("/src").
-		DockerBuild().
+		DockerBuild()
+}
+
+// Pushes a built container image to a container registry
+func (m *VehicleRegistryApi) PushImage(
+	ctx context.Context,
+	container *dagger.Container,
+) (string, error) {
+	address, err := container.
 		Publish(ctx, "ttl.sh/hello-dagger/bernats/fleet-of-knowledge:2h")
 	if err != nil {
 		return "", err
 	}
 
-	return ref, nil
+	return address, nil
 }
 
-// publish
+// End to end CI pipeline ready to run locally or in a pipeline runner
+func (m *VehicleRegistryApi) Ci(
+	ctx context.Context,
+	source *dagger.Directory,
+) (string, error) {
+	m.Test(source)
+	container := m.DockerBuild(ctx, source)
+	image, err := m.PushImage(ctx, container)
+	if err != nil {
+		return "", err
+	}
+
+	return image, nil
+}
