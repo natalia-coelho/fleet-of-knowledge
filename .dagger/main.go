@@ -55,13 +55,20 @@ func (m *VehicleRegistryApi) PushImage(
 	return address, nil
 }
 
+func (m *VehicleRegistryApi) PrCheck(
+	ctx context.Context,
+	source *dagger.Directory,
+) *dagger.Container {
+	m.Test(source)
+	return m.DockerBuild(ctx, source)
+}
+
 // End to end CI pipeline ready to run locally or in a pipeline runner
 func (m *VehicleRegistryApi) Ci(
 	ctx context.Context,
 	source *dagger.Directory,
 ) (string, error) {
-	m.Test(source)
-	container := m.DockerBuild(ctx, source)
+	container := m.PrCheck(ctx, source)
 	image, err := m.PushImage(ctx, container)
 	if err != nil {
 		return "", err
