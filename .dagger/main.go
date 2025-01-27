@@ -1,5 +1,3 @@
-// A generated module for VehicleRegistryApi functions
-
 package main
 
 import (
