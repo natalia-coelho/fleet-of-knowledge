@@ -46,8 +46,10 @@ func (m *VehicleRegistryApi) PushImage(
 	ctx context.Context,
 	container *dagger.Container,
 ) (string, error) {
+	repository := "bemesko/fleet-of-knowledge:latest"
+
 	address, err := container.
-		Publish(ctx, "ttl.sh/hello-dagger/bernats/fleet-of-knowledge:2h")
+		Publish(ctx, repository)
 	if err != nil {
 		return "", err
 	}
@@ -55,6 +57,7 @@ func (m *VehicleRegistryApi) PushImage(
 	return address, nil
 }
 
+// Perform necessary checks for PR validation
 func (m *VehicleRegistryApi) PrCheck(
 	ctx context.Context,
 	source *dagger.Directory,
