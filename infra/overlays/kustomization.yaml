@@ -1,0 +1,28 @@
+resources:
+  - ../base
+
+namePrefix: fleet-of-knowledge
+
+labels:
+  - pairs:
+      app: fleet-of-knowledge
+    includeSelectors: true
+    includeTemplates: true
+
+images:
+  - name: sampleImage
+    newName: hub.docker.io/bemesko/fleet-of-knowledge
+    newTag: latest
+
+# container should have the same name as deployment
+replacements:
+  - source:
+      kind: Deployment
+      name: -svc
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: Deployment
+          name: -svc
+        fieldPaths:
+          - spec.template.spec.containers.0.name
