@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleRegistryAPI", "VehicleRegistryAPI.csproj", "{FE7443D4-6216-4854-B596-BDABF5FAB5F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleRegistryAPI_Tests", "VehicleRegistryAPI_Tests\VehicleRegistryAPI_Tests.csproj", "{FAB4D388-F52C-48D6-A584-1D196F6D48AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{835A93D9-1572-4BFF-94C4-869D9C2CF02F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE7443D4-6216-4854-B596-BDABF5FAB5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7443D4-6216-4854-B596-BDABF5FAB5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7443D4-6216-4854-B596-BDABF5FAB5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7443D4-6216-4854-B596-BDABF5FAB5F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAB4D388-F52C-48D6-A584-1D196F6D48AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAB4D388-F52C-48D6-A584-1D196F6D48AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAB4D388-F52C-48D6-A584-1D196F6D48AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAB4D388-F52C-48D6-A584-1D196F6D48AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE7443D4-6216-4854-B596-BDABF5FAB5F3} = {835A93D9-1572-4BFF-94C4-869D9C2CF02F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A58537BE-CDBB-43E9-A52A-7E4CD3067646}
+	EndGlobalSection
+EndGlobal
