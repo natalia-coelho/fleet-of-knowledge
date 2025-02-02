@@ -1,8 +1,18 @@
+using Data;
+using Interfaces;
+using Repository;
+using Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
-builder.Services.AddControllers();
+// Add services to the container.
+builder.Services.AddSingleton<MovieService>(); // TO-DO: replace for the service 
+
+builder.Services.AddControllers()
+    .AddJsonOptions(
+        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,6 +26,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
+
+app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI"); c.InjectStylesheet("swagger-ui/SwaggerDark.css"); });
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -23,3 +37,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
