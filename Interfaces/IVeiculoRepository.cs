@@ -2,10 +2,10 @@
 
 namespace Interfaces;
 
-public interface IVeiculoRepository
+public interface IVehicleRepository
 {
-    Task<Veiculo> DeleteVehicle(Guid id);
-    Task<Veiculo> GetVehicle();
-    Task<Veiculo> InsertVehicle(Veiculo veiculo);
-    Task<Veiculo> UpdateVehicle(Veiculo veiculo, Guid id);
+    Task<Vehicle> DeleteVehicle(Guid id);
+    Task<Vehicle> GetVehicle(Guid id);
+    Task<Vehicle> InsertVehicle(Vehicle vehicle);
+    Task<Vehicle> UpdateVehicle(Vehicle vehicle, Guid id);
 }

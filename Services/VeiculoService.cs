@@ -3,37 +3,34 @@ using Models;
 
 namespace Services;
 
-public class VeiculoService : IVeiculoService
+public class VehicleService : IVehicleService
 {
-    private readonly IVeiculoRepository _veiculoRepository;
+    private readonly IVehicleRepository _vehicleRepository;
 
-    public VeiculoService(IVeiculoRepository veiculoRepository) =>
-        this._veiculoRepository = veiculoRepository;
+    public VehicleService(IVehicleRepository vehicleRepository) =>
+        this._vehicleRepository = vehicleRepository;
 
-    public async Task<Veiculo> ObterVeiculo()
+    public async Task<Vehicle> GetVehicle(Guid id)
     {
-        var result = await this._veiculoRepository.GetVehicle();
+        var result = await this._vehicleRepository.GetVehicle(id);
         return result;
     }
 
-    public async Task<Veiculo> Atualizar(Veiculo veiculo, Guid id)
+    public async Task<Vehicle> Register(Vehicle vehicle)
     {
-        var result = await this._veiculoRepository.UpdateVehicle(veiculo, id);
-
+        var result = await this._vehicleRepository.InsertVehicle(vehicle);
         return result;
     }
 
-    public async Task<Veiculo> Excluir(Guid id)
+    public async Task<Vehicle> Update(Vehicle vehicle, Guid id)
     {
-        var result = await this._veiculoRepository.DeleteVehicle(id);
-
+        var result = await this._vehicleRepository.UpdateVehicle(vehicle, id);
         return result;
     }
 
-    public async Task<Veiculo> Cadastrar(Veiculo veiculo)
+    public async Task<Vehicle> Delete(Guid id)
     {
-        var result = await this._veiculoRepository.InsertVehicle(veiculo);
-
+        var result = await this._vehicleRepository.DeleteVehicle(id);
         return result;
     }
 }

@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
 // Add services to the container.
-builder.Services.AddSingleton<MovieService>(); // TO-DO: replace for the service 
+builder.Services.AddSingleton<IVehicleRepository, VehicleRepository>();
+builder.Services.AddSingleton<IVehicleService, VehicleService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(
